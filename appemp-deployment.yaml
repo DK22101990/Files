@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appemp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: appemp
+  template:
+    metadata:
+      labels:
+        app: appemp
+    spec:
+      containers:
+      - name: appemp
+        image: myapp:1.0.0
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:mysql://mysql:3306/mydatabase"
+        - name: SPRING_DATASOURCE_USERNAME
+          value: "user"
+        - name: SPRING_DATASOURCE_PASSWORD
+          value: "password"

@@ -1,0 +1,42 @@
+
+--to get the pod details
+kubectl get pods
+
+--to excute the yaml file
+
+kubectl apply -f mysql-deployment.yaml
+
+--to deploy the service
+kubectl apply -f mysql-service.yaml
+
+--to get the services 
+
+kubectl get svc
+
+--to get into the  mysql pod in kubernetics
+kubectl exec -it mysql-9d69747f9-wj79t -- /bin/bash
+
+--to direct login into the sql
+mysql -h localhost -P 3306 -u root -p
+
+--to delete the  pod from kubernetes
+kubectl delete pod appemp-69475b585-fb25n
+
+
+--to get the kubernetces deployement
+
+kubectl get deployments
+
+--to get the deployement logs
+
+kubectl  logs deployment/appemp
+
+--to delete the deployment 
+
+kubectl delete deployment appemp
+
+--to get the serivce
+kubectl get svc
+
+--delete the service
+kubectl  delete service appemp-service

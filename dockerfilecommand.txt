@@ -1,0 +1,14 @@
+-- go to the directory path where docker compose file is saved.
+
+--docker commands
+
+  to  build the docker
+    -->docker-compose up --build
+
+to get the docker images
+
+  --> docker images
+
+to get the docker container
+
+-->docker ps
