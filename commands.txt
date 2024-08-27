@@ -1,0 +1,72 @@
+---docker exec -it nostalgic_lamport bash
+
+
+/opt/kafka/bin/kafka-topics.sh --create --topic myfirstkafka --bootstrap-server localhost:9092 --partitions 4 --replication-factor 1
+
+ 
+list --
+/opt/kafka/bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+
+/opt/kafka/bin/kafka-topics.sh --describe --topic myfirstkafka --bootstrap-server localhost:9092
+
+--prodcuer 
+/opt/kafka/bin/kafka-console-producer.sh --topic myfirstkafka --bootstrap-server localhost:9092
+
+--consumer 
+/opt/kafka/bin/kafka-console-consumer.sh --topic myfirstkafka --from-beginning --bootstrap-server localhost:9092
+ 
+-- to check offset data 
+/opt/kafka/bin/kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list localhost:9092 --topic myfirstkafka --time -1
+
+
+/opt/kafka/bin/kafka-console-consumer.sh --topic myfirstkafka --bootstrap-server localhost:9092 --group my-consumer-group --from-beginning
+
+
+/opt/kafka/bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --group my-consumer-group --describe
+
+
+---- run the kafka command 
+
+docker run --name mykafka -p 9093:9092 apache/kafka:3.8.0
+
+--to stop container
+
+docker stop vibrant_austin
+
+--conencting kafka from  hostmachine to docker machine
+
+bin/kafka-topics.sh --list --bootstrap-server localhost:9093
+
+
+
+----git for windows 
+
+https://git-scm.com/download/win
+
+docker exec -it mykafka bash
+
+mykafka
+
+/opt/kafka/bin/kafka-topics.sh --create --topic myfirstkafka --bootstrap-server localhost:9092 --partitions 4 --replication-factor 1
+
+
+docker stop mykafka 
+
+--windows based kafka
+
+docker run -d --name mykafkanew1 -p 9093:9092 --env KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 --env KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092 --env KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 apache/kafka:3.8.0
+
+
+
+---used for windows
+docker network create kafka-network
+docker run -d --name zookeeper --network kafka-network -p 2181:2181 zookeeper:latest
+docker run -d --name kafka --network kafka-network -p 9092:9092  -e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092 -e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 -e KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181  wurstmeister/kafka:latest
+
+
+
+docker exec -it kafka bash
+
+
+
+kafka-topics.sh --create --topic myfirstkafka --bootstrap-server localhost:9092 --partitions 4 --replication-factor 1
